@@ -16,10 +16,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
-root to: "public/homes#top"
+
 
 # 顧客用
   scope module: :public do
+    root to: "homes#top"
     get"/about"=>"homes#about",as: 'about'
     resources :items, only: [:index, :show]
     resources :customers, only: [:show, :edit, :update]
@@ -35,7 +36,7 @@ root to: "public/homes#top"
   
   # 管理者用
   namespace :admin do
-    resources :homes, only: [:top]
+    root to: "homes#top"
     resources :items, only: [:index, :new, :show, :create, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
