@@ -11,7 +11,9 @@
   </head>
 
   <body>
-    <h1>LOGO</h1>
+    <h1><%= link_to "LOGO", root_path %></h1>
+      
+    
     <!--adminのログイン中のHeader-->
     <% if admin_signed_in? %>
       <li class="">
