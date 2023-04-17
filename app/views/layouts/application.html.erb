@@ -39,7 +39,7 @@
     <!--publicのログイン中のHeader-->
     <% elsif customer_signed_in? %>
       <li class="">
-        <%= link_to "マイページ", customer_path(current_customer) %>
+        <%= link_to "マイページ", my_page_path %>
       </li>
 
       <li class="">
