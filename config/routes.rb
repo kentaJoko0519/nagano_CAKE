@@ -44,8 +44,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get"/orders/:id"=>"orders#show",as: 'order'
   #addresses
     get"/addresses"=>"addresses#index",as: 'addresses'
-    get"/addresses/:id/edit"=>"addresses#edit",as: 'edit_addresses'
     post"/addresses"=>"addresses#create"
+    get"/addresses/:id/edit"=>"addresses#edit",as: 'edit_addresses'
     patch"/addresses/:id"=>"addresses#update"
     delete"/addresses/:id"=>"addresses#destroy"
   end
