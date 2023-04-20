@@ -1,2 +1,17 @@
-<h1>Public::Addresses#edit</h1>
-<p>Find me in app/views/public/addresses/edit.html.erb</p>
+<h1>配送先編集</h1>
+<%= form_with model: @address,url: address_path(@address.id), method: :patch do |f| %>
+  <div>
+    <p>郵便番号(ハイフンなし)　<%= f.text_field :postal_code %></p>
+  </div>
+  <div>
+    <p>住所　<%= f.text_field :address %></p>
+  </div>
+  <div>
+    <p>宛名　<%= f.text_field :name %></p>
+  </div>
+  <div>
+    <%= f.submit "変更内容を保存" %>
+  </div>
+<% end %>
+
+<!--, url: edit_addresses_path(@address.id), method: :patch-->

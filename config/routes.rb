@@ -43,11 +43,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get"/orders"=>"orders#index"
     get"/orders/:id"=>"orders#show",as: 'order'
   #addresses
-    get"/addresses"=>"addresses#index",as: 'addresses'
-    post"/addresses"=>"addresses#create"
-    get"/addresses/:id/edit"=>"addresses#edit",as: 'edit_addresses'
-    patch"/addresses/:id"=>"addresses#update"
-    delete"/addresses/:id"=>"addresses#destroy"
+    resources :addresses, only: [:index, :create, :edit, :update, :destroy]
   end
 
   # 管理者用
