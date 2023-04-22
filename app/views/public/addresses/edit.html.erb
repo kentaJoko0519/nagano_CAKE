@@ -7,11 +7,6 @@
     <p>住所　<%= f.text_field :address %></p>
   </div>
   <div>
-    <p>宛名　<%= f.text_field :name %></p>
-  </div>
-  <div>
-    <%= f.submit "変更内容を保存" %>
+    <p>宛名　<%= f.text_field :name %>　<%= f.submit "変更内容を保存" %></p>
   </div>
 <% end %>
-
-<!--, url: edit_addresses_path(@address.id), method: :patch-->

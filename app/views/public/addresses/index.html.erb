@@ -1,23 +1,18 @@
 <h1>配送先登録/一覧</h1>
-
+<!--新規登録-->
 <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
-  <p>郵便番号</p>
   <div>
-    <%= f.text_field :postal_code, placeholder: "000000" %>
-  </div>
-  <p>住所</p>
-  <div>
-    <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町０−０" %>
-  </div>
-  <p>宛名</p>
-  <div>
-    <%= f.text_field :name, placeholder: "令和道子" %>
+    <p>郵便番号　<%= f.text_field :postal_code, placeholder: "000000" %></p>
   </div>
   <div>
-    <%= f.submit "新規登録" %>
+    <p>住所　<%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町０−０" %></p>
+  </div>
+  <div>
+    <p>宛名　<%= f.text_field :name, placeholder: "令和道子" %>　　<%= f.submit "新規登録" %></p>
   </div>
 <% end %>
 
+<!--配送先一覧-->
 <table>
   <thead>
     <tr>

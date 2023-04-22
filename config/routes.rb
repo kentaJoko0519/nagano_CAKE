@@ -30,11 +30,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get "/customers/unsubscribe"=>"customers#unsubscribe",as: 'unsubscribe'
     patch "/customers/withdraw"=>"customers#withdraw"
   # cart_items
-    get "/cart_items"=>"cart_items#index",as: 'cart_items'
-    patch "/cart_items/:id"=>"cart_items#update"
-    delete "/cart_items/:id"=>"cart_items#destroy"
     delete"/cart_items/destroy_all"=>"cart_items#destroy_all",as: 'destroy_all'
-    post "/cart_items"=>"cart_items#create"
+    resources :cart_items, only: [:index, :create, :update, :destroy]
   # orders
     get"/orders/new"=>"orders#new",as: 'new_order'
     post "/orders/confirm"=>"orsers#confirm", as: 'confirm'

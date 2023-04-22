@@ -1,25 +1,44 @@
 <h1>マイページ</h1>
-<p>登録情報</p>
-<%= link_to "編集する",edit_information_customer_path %>
 
-<p>氏名</p>
-<%= @customer.first_name %>  <%= @customer.last_name %>
+<div>
+  <p>登録情報</p>
+  <%= link_to "編集する",edit_information_customer_path %>
+</div>
 
-<p>カナ</p>
-<%= @customer.first_name_kana %>  <%= @customer.last_name_kana %>
+<div>
+  <p>氏名</p>
+  <%= @customer.first_name %>  <%= @customer.last_name %>
+</div>
 
-<p>郵便番号</p>
-<%= @customer.postal_code %>
+<div>
+  <p>カナ</p>
+  <%= @customer.first_name_kana %>  <%= @customer.last_name_kana %>
+</div>
 
-<p>住所</p>
-<%= @customer.address %>
+<div>
+  <p>郵便番号</p>
+  <%= @customer.postal_code %>
+</div>
 
-<p>電話番号</p>
-<%= @customer.telephone_number %>
+<div>
+  <p>住所</p>
+  <%= @customer.address %>
+</div>
 
-<p>メールアドレス</p>
-<%= @customer.email %>
+<div>
+  <p>電話番号</p>
+  <%= @customer.telephone_number %>
+</div>
 
-<p>配送先</p>　<%= link_to "一覧を見る", addresses_path %>
+<div>
+  <p>メールアドレス</p>
+  <%= @customer.email %>
+</div>
 
-<p>注文履歴</p>  <%= link_to "一覧を見る", orders_path %>
+<div>
+  <p>配送先</p>　<%= link_to "一覧を見る", addresses_path %>
+</div>
+
+<div>
+  <p>注文履歴</p>  <%= link_to "一覧を見る", orders_path %>
+</div>

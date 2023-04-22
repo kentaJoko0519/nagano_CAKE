@@ -12,13 +12,13 @@
 </div>
 <div>
   <!--カートのcreatアクションに送る用-->
-  <%= form_with model: @cart_item do |f| %> 
+  <%= form_with model: @cart_item, url: cart_items_path, method: :post do  |f| %>
   <!--個数選択-->
-    <%= f.number_field :amount %>
+    <%= f.select :amount, *[1..5] %>
   <!--hidden_fieldで@cart_itemにitem_idとcustomer_idのカラムに商品と顧客のIDを送る-->
     <%= f.hidden_field :item_id, :value => @item.id %>
     <%= f.hidden_field :customer_id, :value => @customer.id %>
   <!--ボタンで情報送信-->
     <%= f.submit "カートに入れる" %>
-  <% end %>  
+  <% end %>
 </div>
