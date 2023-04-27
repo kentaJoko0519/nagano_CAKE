@@ -47,7 +47,7 @@
   </div>
   <div>
     <h3>お届け先</h3>
-    <%= @order.postal_code+@order.address+@order.name %>
+    〒<%= @order.postal_code+@order.address+@order.name %>
   </div>
 <%= form_with model: @order, url: orders_path, method: :post do |f| %>
   <%= f.hidden_field :postal_code %>

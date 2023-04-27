@@ -30,12 +30,13 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
+    current_customer.cart_items.destroy_all
     @order.save
     redirect_to complete_path
   end
 
   def index
-    @orders = Order.all
+    @orders = current_customer.orders
     @cart_items = current_customer.cart_items
   end
 
