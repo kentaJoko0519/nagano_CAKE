@@ -26,12 +26,21 @@ class Public::OrdersController < ApplicationController
 
   def complete
   end
-  
+
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    current_customer.cart_items.destroy_all
+    @cart_items = current_customer.cart_items.all
     @order.save
+    @cart_items.each do |cart_item|
+      @order_details = OrderDetail.new
+      @order_details.order_id = @order.id
+      @order_details.item_id = cart_item.item.id
+      @order_details.price = cart_item.item.price
+      @order_details.amount = cart_item.amount
+      @order_details.save!
+    end
+    current_customer.cart_items.destroy_all
     redirect_to complete_path
   end
 
@@ -44,7 +53,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @cart_items = current_customer.cart_items
   end
-  
+
     private
 
   def order_params

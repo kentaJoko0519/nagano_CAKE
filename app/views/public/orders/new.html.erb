@@ -17,7 +17,7 @@
     <!--自身の住所-->
     <div>
       <div>
-       <%= f.radio_button :address_select, 0 %>
+       <%= f.radio_button :address_select, 0, checked: true %>
        <%= f.label :address_select, "ご自身の住所" %>
        <p><%= current_customer.postal_code+current_customer.address+current_customer.first_name+current_customer.last_name %></p>
       </div>
