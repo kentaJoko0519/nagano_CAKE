@@ -5,6 +5,10 @@ class Admin::OrderDetailsController < ApplicationController
     @order = @order_detail.order
     @order_details = @order.order_details.all
     is_updated = true
+    @order_detail.update(order_detail_params)
+    if @order_detail.making_status == "making"
+      @order.update(status: "production")
+    end  
     if @order_detail.update(order_detail_params)
       @order.update(status: 2) if @order_detail.making_status == "production"
       # ②製作ステータスが「製作中」のときに、注文ステータスを「製作中」に更新する。
