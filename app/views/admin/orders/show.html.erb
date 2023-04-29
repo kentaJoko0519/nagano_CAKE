@@ -21,7 +21,7 @@
   <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do  |f| %>
     <%= f.select :status, Order.statuses_i18n.keys.map { |k| [t("enums.order.status.#{k}"), k] } %>
     <%= f.submit"変更" %>
-  <% end %>  
+  <% end %>
 </div>
 
 <table>
@@ -42,10 +42,10 @@
       <td><%= order_detail.amount %></td>
       <td><%= order_detail.subtotal %></td>
       <td>
-        <%= form_with model: @order, url: admin_order_detail_path(@order.id), method: :patch do  |f| %>
-          <%= f.select :making_status, OrderDetail.making_statuses_i18n.keys.map { |k| [t("enums.order.making_status.#{k}"), k] } %>
+        <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do  |f| %>
+          <%= f.select :making_status, OrderDetail.making_statuses_i18n.keys.map { |k| [t("enums.order_detail.making_status.#{k}"), k] } %>
           <%= f.submit"変更" %>
-        <% end %>  
+        <% end %>
       </td>
     </tr>
     <% end %>
@@ -71,5 +71,5 @@
   　   <%= @order.total_payment %>
   　</div>
   </div>
-  
+
 </div>

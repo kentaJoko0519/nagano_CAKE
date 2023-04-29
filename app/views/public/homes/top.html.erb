@@ -5,11 +5,17 @@
   購入には会員登録が必要になります。<br>
 </p>
 
+<div>
+  <%= image_tag 'ケーキ屋.jpeg', size: '600x280' %>
+</div>
+
 <h1>新着商品</h1>
-<% @items.each do |item| %>
+<% @items.first(4).each do |item| %>
   <%= link_to (image_tag item.get_item_image(100,100)), item_path(item.id) %>
   <%= item.name %>
   ¥<%= item.price %>
 <% end %>
 
-<%= link_to "すべての商品を見る", items_path %>
+<div>
+  <%= link_to "すべての商品を見る", items_path %>
+</div>

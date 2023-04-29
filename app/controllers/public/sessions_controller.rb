@@ -26,6 +26,12 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  
+  def after_sign_in_path_for(_resource)
+    root_path
+  end
+  
+  
   protected
     # 退会しているかを判断するメソッド
   def customer_state
