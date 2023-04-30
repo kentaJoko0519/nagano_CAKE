@@ -1,15 +1,30 @@
-<h1>商品一覧</h1><p>(全<%= @items.count%>件)</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 d-md-flex mt-5">
+      <h3><strong>商品一覧</strong></h3>
+      <h5>(全<%= @items.count%>件)</h5>
+    </div>
+    
+    <div class="col-md-11 d-flex flex-wrap">
+      <% @items.each do |item| %>
+        <div class="col-md-3">
+          <div class="flex-column mr-3">
+            <div>
+              <%= link_to (image_tag item.get_item_image(250,130)), item_path(item.id) %>
+            </div>
+            <div>
+              <%= link_to item.name, item_path(item.id) %>
+            </div>
+            <div>
+              ¥<%= item.price %>
+            </div>
+          </div>
+        </div>  
+      <% end %>
+    </div>
+  </div>
+  <div class="text-center mx-auto ">
+    <%= paginate @items %>
+  </div>
+</div>
 
-<% @items.each do |item| %>
-  <div>
-    <%= link_to (image_tag item.get_item_image(100,100)), item_path(item.id) %>
-  </div>
-  <div>
-    <%= link_to item.name, item_path(item.id) %>
-  </div>
-  <div>
-    ¥<%= item.price %>
-  </div>
-<% end %>
-
-<%= paginate @items %>
