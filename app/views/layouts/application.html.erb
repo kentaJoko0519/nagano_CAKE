@@ -5,79 +5,74 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  
   <body>
-    <h1><%= link_to "LOGO", root_path %></h1>
-      
+  <!--Header-->
+    <header class="h-100">
+      <nav class="navbar navbar-expand-lg border-bottom border-dark">
+        <div class="container p-3">
+          <h1><%= link_to "LOGO", root_path, class: "text-dark border border-dark px-5" %></h1>
+          <!--adminのログイン中のHeader-->
+          <ul class="navbar-nav">
+            <% if admin_signed_in? %>
+              <li class="">
+                <%= link_to "商品一覧", admin_items_path %>
+              </li>
+              <li class="">
+                <%= link_to "会員一覧", admin_customers_path %>
+              </li>
+              <li class="">
+                <%= link_to "注文履歴一覧", admin_root_path %>
+              </li>
+              <li class="">
+                <%= link_to "ジャンル一覧", admin_genres_path %>
+              </li>
+              <li class="">
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+              </li>
+            <!--publicのログイン中のHeader-->
+            <% elsif customer_signed_in? %>
+              <li class="">
+                <%= link_to "マイページ", my_page_path %>
+              </li>
+              <li class="">
+                <%= link_to "商品一覧", items_path %>
+              </li>
+              <li class="">
+                <%= link_to "カート", cart_items_path %>
+              </li>
+              <li class="">
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+              </li>
+            <!--ログアウト中のHeader-->
+            <% else %>
+              <li class="">
+                <%= link_to "About", about_path, class: "nav-link text-dark border border-muted rounded mr-5 px-3" %>
+              </li>
+              <li class="">
+                <%= link_to "商品一覧", items_path, class: "nav-link text-dark border border-muted rounded mr-5 px-3" %>
+              </li>
+              <li class="">
+                <%= link_to "新規登録", new_customer_registration_path, class: "nav-link text-dark border border-muted rounded mr-5 px-3" %>
+              </li>
+              <li class="">
+                <%= link_to "ログイン", new_customer_session_path, class: "nav-link text-dark border border-muted rounded px-3" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>  
+    </header>
+  <!--Main-->
+    <main>
+      <%= yield %>
+    </main>
+  <!--Footer-->
+    <footer class="border-top border-dark">
+    </footer>
     
-    <!--adminのログイン中のHeader-->
-    <% if admin_signed_in? %>
-      <li class="">
-        <%= link_to "商品一覧", admin_items_path %>
-      </li>
-
-      <li class="">
-        <%= link_to "会員一覧", admin_customers_path %>
-      </li>
-
-      <li class="">
-        <%= link_to "注文履歴一覧", admin_root_path %>
-      </li>
-
-      <li class="">
-        <%= link_to "ジャンル一覧", admin_genres_path %>
-      </li>
-
-      <li class="">
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-      </li>
-
-    <!--publicのログイン中のHeader-->
-    <% elsif customer_signed_in? %>
-      <li class="">
-        <%= link_to "マイページ", my_page_path %>
-      </li>
-
-      <li class="">
-        <%= link_to "商品一覧", items_path %>
-      </li>
-
-      <li class="">
-        <%= link_to "カート", cart_items_path %>
-      </li>
-
-      <li class="">
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-      </li>
-
-
-    <!--ログアウト中のHeader-->
-    <% else %>
-      <li class="">
-        <%= link_to "About", about_path %>
-      </li>
-
-      <li class="">
-        <%= link_to "商品一覧", items_path %>
-      </li>
-
-      <li class="">
-        <%= link_to "新規登録", new_customer_registration_path %>
-      </li>
-
-      <li class="">
-        <%= link_to "ログイン", new_customer_session_path %>
-      </li>
-
-    <% end %>
-
-
-
-
-    <%= yield %>
   </body>
 </html>

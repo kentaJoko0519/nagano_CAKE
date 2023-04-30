@@ -10,15 +10,17 @@
 <div>
   ¥<%= (@item.price*1.1).floor %>円(税込)
 </div>
-<div>
-  <!--カートのcreatアクションに送る用-->
-  <%= form_with model: @cart_item, url: cart_items_path, method: :post do  |f| %>
-  <!--個数選択-->
-    <%= f.select :amount, *[1..5], prompt: "個数選択" %>
-  <!--hidden_fieldで@cart_itemにitem_idとcustomer_idのカラムに商品と顧客のIDを送る-->
-    <%= f.hidden_field :item_id, :value => @item.id %>
-    <%= f.hidden_field :customer_id, :value => @customer.id %>
-  <!--ボタンで情報送信-->
-    <%= f.submit "カートに入れる" %>
-  <% end %>
-</div>
+<% if current_customer %>
+  <div>
+    <!--カートのcreatアクションに送る用-->
+    <%= form_with model: @cart_item, url: cart_items_path, method: :post do  |f| %>
+    <!--個数選択-->
+      <%= f.select :amount, *[1..5], prompt: "個数選択" %>
+    <!--hidden_fieldで@cart_itemにitem_idとcustomer_idのカラムに商品と顧客のIDを送る-->
+      <%= f.hidden_field :item_id, :value => @item.id %>
+      <%= f.hidden_field :customer_id, :value => @customer.id %>
+    <!--ボタンで情報送信-->
+      <%= f.submit "カートに入れる" %>
+    <% end %>
+  </div>
+<% end %>
