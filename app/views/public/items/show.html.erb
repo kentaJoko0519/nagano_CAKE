@@ -1,26 +1,34 @@
-<div>
-  <%= image_tag @item.get_item_image(100,100) %>
-</div>
-<div>
-  <%= @item.name %>
-</div>
-<div>
-  <%= @item.introduction %>
-</div>
-<div>
-  ¥<%= (@item.price*1.1).floor %>円(税込)
-</div>
-<% if current_customer %>
-  <div>
-    <!--カートのcreatアクションに送る用-->
-    <%= form_with model: @cart_item, url: cart_items_path, method: :post do  |f| %>
-    <!--個数選択-->
-      <%= f.select :amount, *[1..5], prompt: "個数選択" %>
-    <!--hidden_fieldで@cart_itemにitem_idとcustomer_idのカラムに商品と顧客のIDを送る-->
-      <%= f.hidden_field :item_id, :value => @item.id %>
-      <%= f.hidden_field :customer_id, :value => @customer.id %>
-    <!--ボタンで情報送信-->
-      <%= f.submit "カートに入れる" %>
-    <% end %>
+<div class="container mt-5">
+  <div class="row", style="margin-left:100px">
+    <div class="col-md-3">
+      <%= image_tag @item.get_item_image(600,400) %>
+    </div>
+    <div class="col-md-7 flex-column ml-5">
+      <div class="mb-4", style= "margin-left:50px;">
+        <h4><strong><%= @item.name %></strong></h4>
+      </div>
+      <div class="mb-5", style= "margin-left:50px;">
+        <%= @item.introduction %>
+      </div>
+      <div class="mt-2 mb-5", style= "margin-left:50px;">
+        <h5><strong>¥<%= (@item.price*1.1).floor %>円(税込)</strong></h5>
+      </div>
+      <div>
+        <% if current_customer %>
+          <div>
+            <!--カートのcreatアクションに送る用-->
+            <%= form_with model: @cart_item, url: cart_items_path, method: :post do  |f| %>
+            <!--個数選択-->
+              <%= f.select :amount, *[1..5], { :prompt => "個数選択" }, style: "margin-left:50px;" %>
+            <!--hidden_fieldで@cart_itemにitem_idとcustomer_idのカラムに商品と顧客のIDを送る-->
+              <%= f.hidden_field :item_id, :value => @item.id %>
+              <%= f.hidden_field :customer_id, :value => @customer.id %>
+            <!--ボタンで情報送信-->
+              <%= f.submit "カートに入れる", class: "btn btn-success", style: "width:40%; margin-left:40px;" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
