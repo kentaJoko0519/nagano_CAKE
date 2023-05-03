@@ -1,42 +1,55 @@
-<h1><%= @customer.first_name+@customer.last_name %>さんの会員情報編集</h1>
-<%= form_with model: @customer,url: admin_customer_path, method: :patch do |f| %>
-  <div>
-    <p>氏名</p>
-    <%= f.text_field :first_name %>  <%= f.text_field :last_name %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mt-4 bg-secondary text-center text-light h3", style="margin-left:50px;">
+       <h5><%= @customer.first_name+@customer.last_name %>さんの会員情報編集</h5>
+    </div>
   </div>
-
-  <div>
-    <p>フリガナ</p>
-    <%= f.text_field :first_name_kana %>  <%= f.text_field :last_name_kana %>
+  <div class="row">
+    <div class="col-md-7">
+      <%= form_with model: @customer,url: admin_customer_path, method: :patch do |f| %>
+      <table class="table table-borderless">
+        <tr>
+          <td>会員ID</td>
+          <td><%= @customer.id %></td>
+        </tr>
+        <tr>
+          <td>氏名</td>
+          <td><%= f.text_field :first_name %>  <%= f.text_field :last_name %></td>
+        </tr>
+        <tr>
+          <td>フリガナ</td>
+          <td><%= f.text_field :first_name_kana %>  <%= f.text_field :last_name_kana %></td>
+        </tr>
+        <tr>
+          <td>郵便番号</td>
+          <td><%= f.text_field :postal_code %></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= f.text_field :address %></td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td> <%= f.text_field :telephone_number %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= f.text_field :email %></td>
+        </tr>
+        <tr>
+          <td>会員ステータス</td>
+          <td>
+            <%= f.radio_button :is_deleted, :false %>有効
+            <%= f.radio_button :is_deleted, :true %>退会
+          </td>
+        </tr>
+      </table>
+      <div class="row">
+        <div class="col">
+          <%= f.submit'変更を保存', class: "btn btn-success", style: "margin-left:170px;" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
   </div>
-
-  <div>
-    <p>郵便番号</p>
-    <%= f.text_field :postal_code %>
-  </div>
-
-  <div>
-    <p>住所</p>
-    <%= f.text_field :address %>
-  </div>
-
-  <div>
-    <p>電話番号</p>
-    <%= f.text_field :telephone_number %>
-  </div>
-
-  <div>
-    <p>メールアドレス</p>
-    <%= f.text_field :email %>
-  </div>
-
-  <div>
-    <p>会員ステータス</p>
-    <%= f.radio_button :is_deleted, :false %>有効
-    <%= f.radio_button :is_deleted, :true %>退会
-  </div>
-
-  <div>
-    <%= f.submit'変更を保存' %>
-  </div>
-<% end %>
+</div>

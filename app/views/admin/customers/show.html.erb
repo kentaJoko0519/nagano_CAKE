@@ -1,49 +1,60 @@
-<h1><%= @customer.first_name+@customer.last_name %>さんの会員詳細</h1>
-<div>
-  <p>会員ID</p>
-  <%= @customer.id %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mt-4 bg-secondary text-center text-light h3", style="margin-left:50px;">
+       <h5><%= @customer.first_name+@customer.last_name %>さんの会員詳細</h5>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <table class="table table-borderless">
+        <tr>
+          <td>会員ID</td>
+          <td><%= @customer.id %></td>
+        </tr>
+        <tr>
+          <td>氏名</td>
+          <td><%= @customer.first_name %> <%= @customer.last_name %></td>
+        </tr>
+        <tr>
+          <td>フリガナ</td>
+          <td><%= @customer.first_name_kana %> <%= @customer.last_name_kana %></td>
+        </tr>
+        <tr>
+          <td>郵便番号</td>
+          <td><%= @customer.postal_code %></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td><%= @customer.telephone_number %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @customer.email %></td>
+        </tr>
+        <tr>
+          <td>会員ステータス</td>
+          <td>
+            <% if @customer.is_deleted == false %>
+              <p>有効</p>
+            <% else %>
+               <p>退会</p>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row", style="margin-left:240px;">
+    <div class="col-md-2">
+      <%= link_to "編集する", edit_admin_customer_path, class: "btn btn-success" %>
+    </div>
+    <div class="col-md-4">
+      <%= link_to "注文履歴一覧を見る", admin_root_path, class: "btn btn-primary" %>
+    </div>
+  </div>
 </div>
-
-<div>
-  <p>氏名</p>
-  <%= @customer.first_name %> <%= @customer.last_name %>
-</div>
-
-<div>
-  <p>フリガナ</p>
-  <%= @customer.first_name_kana %> <%= @customer.last_name_kana %>
-</div>
-
-<div>
-  <p>郵便番号</p>
-  <%= @customer.postal_code %>
-</div>
-
-<div>
-  <p>住所</p>
-  <%= @customer.address %>
-</div>
-
-<div>
-  <p>電話番号</p>
-  <%= @customer.telephone_number %>
-</div>
-
-<div>
-  <p>メールアドレス</p>
-  <%= @customer.email %>
-</div>
-
-<div>
-  <p>会員ステータス</p>
-  <% if @customer.is_deleted == false %>
-    <p>有効</p>
-  <% else %>
-     <p>退会</p>
-   <% end %>
-</div>
-
-<%= link_to "編集する", edit_admin_customer_path %>
-<%= link_to "注文履歴一覧を見る", admin_root_path %>
-
 
