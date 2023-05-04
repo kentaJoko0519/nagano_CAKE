@@ -19,7 +19,7 @@
             <!--カートのcreatアクションに送る用-->
             <%= form_with model: @cart_item, url: cart_items_path, method: :post do  |f| %>
             <!--個数選択-->
-              <%= f.select :amount, *[1..5], { :prompt => "個数選択" }, style: "margin-left:50px;" %>
+              <%= f.select :amount, *[1..5], { :placeholder => "個数選択" }, style: "margin-left:50px;" %>
             <!--hidden_fieldで@cart_itemにitem_idとcustomer_idのカラムに商品と顧客のIDを送る-->
               <%= f.hidden_field :item_id, :value => @item.id %>
               <%= f.hidden_field :customer_id, :value => @customer.id %>
