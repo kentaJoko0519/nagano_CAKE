@@ -1,6 +1,6 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def new
     @order=Order.new
     @addresses=current_customer.addresses
@@ -20,6 +20,9 @@ class Public::OrdersController < ApplicationController
       @order.address = @address.address
       @order.name = @address.name
     elsif address_select == "2"
+      if params[:order][:postal_code].blank? || params[:order][:address].blank? || params[:order][:name].blank?
+        redirect_to new_order_path
+      end
       @order=Order.new(order_params)
     end
     @cart_items = current_customer.cart_items

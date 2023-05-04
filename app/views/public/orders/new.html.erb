@@ -31,11 +31,13 @@
           </div>
             <!--登録済み住所-->
             <div style="margin-left:50px;">
-              <%= f.radio_button :address_select, 1 %>
-              <%= f.label :address_select, "登録済み住所" %>
+              <% if @addresses.present? %>
+                <%= f.radio_button :address_select, 1 %>
+                <%= f.label :address_select, "登録済み住所" %>
               <div class="col", style="width:400px; margin-left:50px;">
                 <%= f.select :address_id, options_from_collection_for_select(@addresses, :id, :address_display),style: "width:80%" %>
               </div>
+              <% end %>
             </div>
             <!--新しいお届け先-->
             <div style="margin-left:50px;">

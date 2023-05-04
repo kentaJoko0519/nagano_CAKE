@@ -60,7 +60,7 @@
             <td>
               <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do  |f| %>
                 <%= f.select :making_status, OrderDetail.making_statuses_i18n.keys.map { |k| [t("enums.order_detail.making_status.#{k}"), k] } %>
-                <%= f.submit"変更" %>
+                <%= f.submit"変更", class: "btn btn-success" %>
               <% end %>
             </td>
           </tr>
